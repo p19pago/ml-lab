@@ -1,0 +1,91 @@
+         CLIPS (V6.21 06/15/03)
+CLIPS> (assert (age Andrew 20))
+<Fact-0>
+CLIPS> (assert (weight Andrew 80))
+<Fact-1>
+CLIPS> (assert (height Andrew 188))
+<Fact-2>
+CLIPS> (assert (blood-pressure Andrew 130 80))
+<Fact-3>
+CLIPS> (assert (age Brenda 23))
+<Fact-4>
+CLIPS> (assert (weight Brenda 50))
+<Fact-5>
+CLIPS> (assert (height Brenda 140))
+<Fact-6>
+CLIPS> (assert (blood-pressure Brenda 120 60))
+<Fact-7>
+CLIPS> (assert (age Jeff 60))
+<Fact-8>
+CLIPS> (assert (weight Jeff 80))
+<Fact-9>
+CLIPS> (assert (height Jeff 170))
+<Fact-10>
+CLIPS> (assert (blood-pressure Jeff 140 70))
+<Fact-11>
+CLIPS> (assert (age Alice 45))
+<Fact-12>
+CLIPS> (assert (weight Alice 120))
+<Fact-13>
+CLIPS> (assert (height Alice 157))
+<Fact-14>
+CLIPS> (assert (blood-pressure Alice 100 00))
+<Fact-15>
+CLIPS> (assert (age Bob 50))
+<Fact-16>
+CLIPS> (assert (weight Bob 75))
+<Fact-17>
+CLIPS> (assert (height Bob 180))
+<Fact-18>
+CLIPS> (assert (blood-pressure Bob 110 60))
+<Fact-19>
+CLIPS> (assert (age Eve 25))
+<Fact-20>
+CLIPS> (assert (weight Eve 65))
+<Fact-21>
+CLIPS> (assert (height Eve 160))
+<Fact-22>
+CLIPS> (assert (blood-pressure Eve 120 30))
+<Fact-23>
+CLIPS> (assert (age Mallory 65))
+<Fact-24>
+CLIPS> (assert (weight Mallory 200))
+<Fact-25>
+CLIPS> (assert (height Mallory 175))
+<Fact-26>
+CLIPS> (assert (blood-pressure Mallory 180 20))
+<Fact-27>
+CLIPS> (deftemplate personal-data
+(slot name)
+(slot age)
+(slot weight)
+(slot height)
+(multislot blood-pressure)
+)
+CLIPS> (deffacts people
+(personal-data (name Andrew)(age 20)(weight 80)(height 188)(blood-pressure 130 80))
+(personal-data (name Cyril)(age 63)(weight 70)(height 1678)(blood-pressure 180 90))
+)
+CLIPS> (defrule birthday
+?birthday <- (birthday ?name)
+?data-fact <- (personal-data (name ?name)(age ?age))
+=>
+(modify ?data-fact(age (+ ?age 1)))
+(retract ?birthday)
+)
+CLIPS> (defrule lardy-bugger
+(personal-data (name ?name)(weight ?weight))
+(test (> ?weight 100))
+=>
+(printout t ?name " weighs " ?weight "kg - the fat sod" crlf)
+)
+CLIPS> (defrule print-ages
+(and
+(personal-data (name ?name)(age ?age))
+(personal-data (name ?name)(weight ?weight))
+)
+=>
+(printout t ?name " weighs " ?weight " at " ?age "years old." crlf)
+)
+CLIPS> (run)
+CLIPS> 

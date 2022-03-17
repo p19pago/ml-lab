@@ -1,0 +1,41 @@
+         CLIPS (V6.21 06/15/03)
+CLIPS> (deffacts sample-data (data 3))
+CLIPS> (defrule start-rule
+(initial-fact)
+(data ?x)
+=>
+(assert (temp2 (*2 ?x)))
+(assert (temp3 (*3 ?x)))
+)
+
+[EXPRNPSR3] Missing function declaration for *2.
+
+ERROR:
+(defrule MAIN::start-rule
+   (initial-fact)
+   (data ?x)
+   =>
+   (assert (temp2 (*2
+CLIPS> (defrule test2
+(temp2 ?x)
+=>
+(printout t "double: " ?x crlf)
+)
+CLIPS> (defrule test3
+(temp3 ?x)
+=>
+(printout t "triple: " ?x crlf)
+)
+CLIPS> (reset)
+CLIPS> (run)
+CLIPS> 9
+9
+CLIPS> 6
+6
+CLIPS> (set-strategy-depth)
+
+[EXPRNPSR3] Missing function declaration for set-strategy-depth.
+CLIPS> (set-strategy-breadth)
+
+[EXPRNPSR3] Missing function declaration for set-strategy-breadth.
+CLIPS> 

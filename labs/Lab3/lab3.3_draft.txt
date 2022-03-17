@@ -1,0 +1,26 @@
+         CLIPS (V6.21 06/15/03)
+CLIPS> (assert (name))
+<Fact-0>
+CLIPS> (assert (beard-length))
+<Fact-1>
+CLIPS> (assert (profession))
+<Fact-2>
+CLIPS> (assert (name Socrates))
+<Fact-3>
+CLIPS> (assert (beard-length 12))
+<Fact-4>
+CLIPS> (assert (profession philosopher))
+<Fact-5>
+CLIPS> (assert (name DelBoy))
+<Fact-6>
+CLIPS> (assert (beard-length nil))
+<Fact-7>
+CLIPS> (assert (profession phone-seller))
+<Fact-8>
+CLIPS> (assert (name Zeus))
+<Fact-9>
+CLIPS> (assert (beard-length 18))
+<Fact-10>
+CLIPS> (assert (profession god))
+<Fact-11>
+CLIPS> 

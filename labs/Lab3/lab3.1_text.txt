@@ -1,0 +1,90 @@
+         CLIPS (V6.21 06/15/03)
+CLIPS> (assert (member-of-beatles john_lennon paul_mccartney george_harrison ringo_starr))
+<Fact-0>
+CLIPS> (assert (member-of-who roger_daltrey pete_townsend keith_moon))
+<Fact-1>
+CLIPS> (assert (member-of-ebtg tracey_thorn ben_watt))
+<Fact-2>
+CLIPS> (defrule member-of-band-2)
+
+[PRNTUTIL2] Syntax Error:  Check appropriate syntax for defrule.
+
+ERROR:
+(defrule MAIN::member-of-band-2)
+CLIPS> (defrule member-of-band-2
+(member-of ?band ?artist ?)
+=>
+(printout t ?artist " is member of " ?band crlf)
+)
+CLIPS> (agenda)
+CLIPS> (agenda)
+CLIPS> (agenda)
+CLIPS> (agenda)
+CLIPS> (agenda)
+CLIPS> (facts)
+f-0     (member-of-beatles john_lennon paul_mccartney george_harrison ringo_starr)
+f-1     (member-of-who roger_daltrey pete_townsend keith_moon)
+f-2     (member-of-ebtg tracey_thorn ben_watt)
+For a total of 3 facts.
+CLIPS> (run)
+CLIPS> (run)
+CLIPS> (run)
+CLIPS> (run)
+CLIPS> (reset)
+CLIPS> (defrule print-bands
+(member-of ?band ?$)
+=>
+(printout t ("There is a band called" ?band)
+)
+)
+
+[EXPRNPSR1] A function name must be a symbol
+
+ERROR:
+(defrule MAIN::print-bands
+   (member-of ?band ? $)
+   =>
+   (printout t ("There is a band called"
+CLIPS> (defrule print-bands
+(number-of ?band ?$)
+=>
+(printout t "There is a band called " ?band crlf)
+)
+CLIPS> (run)
+CLIPS> (run)
+CLIPS> (run)
+CLIPS> (facts)
+f-0     (initial-fact)
+For a total of 1 fact.
+CLIPS> (rules)
+member-of-band-2
+print-bands
+For a total of 2 defrules.
+CLIPS> (agenda)
+CLIPS> (agenda)
+CLIPS> (facts)
+f-0     (initial-fact)
+For a total of 1 fact.
+CLIPS> (defrule band-members
+(member-of ?band $?members)
+=>
+(printout t " The members of " ?band " are " $?members crlf))
+CLIPS> (printout ?artist " is member of " ?band)
+[EVALUATN1] Variable artist is unbound
+[ROUTER1] Logical name FALSE was not recognized by any routers
+CLIPS> (printout ?artist "is member of" ?band crlf)
+[EVALUATN1] Variable artist is unbound
+[ROUTER1] Logical name FALSE was not recognized by any routers
+CLIPS> (defrule print-all-band-members
+(member-of ?band $?artist $?)
+=>
+(printout ?artist " is member of " ?band crlf))
+CLIPS> (facts)
+f-0     (initial-fact)
+For a total of 1 fact.
+CLIPS> (reset)
+CLIPS> (agenda)
+CLIPS> (run)
+\CLIPS> (run)
+CLIPS> (run)
+CLIPS> 
