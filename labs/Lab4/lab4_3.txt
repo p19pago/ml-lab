@@ -1,0 +1,56 @@
+         CLIPS (V6.21 06/15/03)
+CLIPS> (assert (num 1))
+<Fact-0>
+CLIPS> (defrule numbers
+(num ?n)
+=>
+(loop-for-count (?n 1 9) do
+(printout t "the num is: " ?n crlf)))
+CLIPS> (run)
+the num is: 1
+the num is: 2
+the num is: 3
+the num is: 4
+the num is: 5
+the num is: 6
+the num is: 7
+the num is: 8
+the num is: 9
+CLIPS> (defrule numbers2
+(num ?n)
+=>
+(while (< ?n 10)
+do
+(printout t "the num is: " ?n crlf)
+(bind ?n (+ 1 ?n)))
+)
+CLIPS> (run)
+the num is: 1
+the num is: 2
+the num is: 3
+the num is: 4
+the num is: 5
+the num is: 6
+the num is: 7
+the num is: 8
+the num is: 9
+CLIPS> (defrule sign
+(num ?n)
+=>
+(if (> ?n 0) then
+(printout t "positive" crlf)
+else (if (< ?n 0) then
+(printout t "negative" crlf)
+else
+(printout t "zero" crlf)))
+)
+CLIPS> (run)
+positive
+CLIPS> 4
+4
+CLIPS> -1
+-1
+CLIPS> (run)
+CLIPS> -2
+-2
+CLIPS> 
